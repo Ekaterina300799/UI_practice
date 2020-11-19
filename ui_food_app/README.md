@@ -1,6 +1,7 @@
 # ui_food_app
 
-A new Flutter project.
+![Screenshot_1605721477](https://user-images.githubusercontent.com/61863469/99631542-d424e180-2a4c-11eb-8c6a-9eddb2f082a2.png)
+
 
 ## You can find me here:
 
