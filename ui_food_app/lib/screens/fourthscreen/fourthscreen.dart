@@ -49,24 +49,27 @@ class FourthScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 100),
-              child: Material(
-                color: Colors.white,
-                child: Ink(
-                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 20, horizontal: 90),
+              child: InkWell(
+                onTap: () {},
+                child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Color(0xffFFA451),
+                      color: Color(
+                        0xffFFA451,
+                      ),
                       width: 0.9,
                     ),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  // height: 40,
-                  // width: 40,
-                  child:Text(
-                    'Continue shopping',
-                    style: TextStyle(color: Color(0xffFFA451)),
-                    textAlign: TextAlign.center,
+                  height: 60,
+                  child: Center(
+                    child: Text(
+                      'Continue shopping',
+                      style: TextStyle(color: Color(0xffFFA451)),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
               ),
