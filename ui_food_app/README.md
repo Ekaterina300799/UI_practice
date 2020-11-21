@@ -1,6 +1,6 @@
 # ui_food_app
 
-![Screenshot_1605721477](https://user-images.githubusercontent.com/61863469/99631542-d424e180-2a4c-11eb-8c6a-9eddb2f082a2.png)
+![screens](https://user-images.githubusercontent.com/61863469/99882870-82d74680-2c34-11eb-90be-6a6495900da8.png)
 
 
 ## You can find me here:
