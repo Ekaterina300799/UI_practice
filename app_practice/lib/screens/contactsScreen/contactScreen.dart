@@ -1,5 +1,6 @@
 import 'package:app_practice/data/api.dart';
 import 'package:app_practice/data/dataModel.dart';
+import 'package:app_practice/screens/contactsScreen/widgets/contactCard.dart';
 import 'package:app_practice/screens/contactsScreen/widgets/error.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,6 @@ class ContactsList extends StatefulWidget {
 }
 
 class _ContactsListState extends State<ContactsList> {
-  var _pinned = true;
   List<User> _user;
   bool _loading;
 
@@ -45,7 +45,7 @@ class _ContactsListState extends State<ContactsList> {
           body: CustomScrollView(
             slivers: [
               SliverAppBar(
-                pinned: _pinned,
+                pinned: true,
                 expandedHeight: 100.0,
                 flexibleSpace: const FlexibleSpaceBar(
                   title: Text(
@@ -61,35 +61,10 @@ class _ContactsListState extends State<ContactsList> {
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                     User user = _user[index];
-                    return Container(
-                      child: Card(
-                        elevation: 2,
-                        shadowColor: Colors.black26,
-                        shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(20)),
-                        child: ListTile(
-                          title: Text(
-                            user.name,
-                            style: TextStyle(
-                              fontSize: 23,
-                            ),
-                          ),
-                          leading:
-                              Image.asset("assets/images/bx-user-circle.png"),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(user.email),
-                              Text(
-                                user.company.name,
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                    return UserCard(
+                      name: user.name,
+                      email: user.email,
+                      company: user.company.name,
                     );
                   },
                   childCount: _user.length,

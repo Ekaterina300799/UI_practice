@@ -27,26 +27,30 @@ class ErrorScreen extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
-            TextButton(
-              onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   CupertinoPageRoute(
-                //     builder: (ctx) => ContactsList(),
-                //   ),
-                // );
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.purple[300]),
-                padding: MaterialStateProperty.all(
-                  EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(50),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    CupertinoPageRoute(
+                      builder: (ctx) => ContactsList(),
+                    ),
+                  );
+                },
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all(Colors.purple[300]),
+                  padding: MaterialStateProperty.all(
+                    EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  ),
                 ),
-              ),
-              child: Text(
-                "Refresh",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
+                child: Text(
+                  "Refresh",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
                 ),
               ),
             ),

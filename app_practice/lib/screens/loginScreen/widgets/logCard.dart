@@ -1,4 +1,5 @@
 import 'package:app_practice/screens/contactsScreen/contactScreen.dart';
+import 'package:app_practice/screens/loginScreen/widgets/textField.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -63,45 +64,14 @@ class _LoginCardState extends State<LoginCard> {
               ),
               child: Column(
                 children: [
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                    width: mq * 0.9,
-                    child: TextField(
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                        labelText: "E-mail",
-                        labelStyle: TextStyle(color: Colors.grey[500]),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey[500]),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.purple[300]),
-                        ),
-                      ),
-                      cursorColor: Colors.purple[300],
-                    ),
+                  Field(
+                    label: "E-mail",
+                    obscure: false,
                   ),
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                    width: mq * 0.9,
-                    child: TextField(
-                      controller: _myController,
-                      textAlign: TextAlign.center,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        labelText: "Password",
-                        labelStyle: TextStyle(color: Colors.grey[500]),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey[500]),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.purple[300]),
-                        ),
-                      ),
-                      cursorColor: Colors.purple[300],
-                    ),
+                  Field(
+                    label: "Password",
+                    obscure: true,
+                    controller: _myController,
                   ),
                   SizedBox(
                     height: 15,
