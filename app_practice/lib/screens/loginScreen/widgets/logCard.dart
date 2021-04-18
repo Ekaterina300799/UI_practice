@@ -38,10 +38,10 @@ class _LoginCardState extends State<LoginCard> {
     var mq = MediaQuery.of(context).size.width;
     return Container(
       child: Positioned(
-        bottom: mq * 0.5,
+        bottom: 100,
         left: 30,
         right: 30,
-        top: mq * 0.5,
+        top: 100,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,7 +84,7 @@ class _LoginCardState extends State<LoginCard> {
                           color: Colors.black12,
                           offset: Offset(0.0, 0.1))
                     ]),
-                    width: mq * 0.8,
+                    width: mq * 0.7,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       child: TextButton(

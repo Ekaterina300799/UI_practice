@@ -2,7 +2,7 @@ import 'package:app_practice/data/dataModel.dart';
 import 'package:http/http.dart' as http;
 
 class UserApi {
-  static const String url = 'https://jsonplaceholder.typicode.com/users';
+  static const String url = 'https://jsonplaceholder.typicode.com/user';
 
   static Future<List<User>> getUsers() async {
     try {
