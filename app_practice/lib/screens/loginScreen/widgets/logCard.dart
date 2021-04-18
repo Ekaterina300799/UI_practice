@@ -47,7 +47,7 @@ class _LoginCardState extends State<LoginCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Вход",
+              "LOG IN",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 30,
@@ -99,7 +99,7 @@ class _LoginCardState extends State<LoginCard> {
                           ),
                         ),
                         child: Text(
-                          "Войти",
+                          "Log in",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
