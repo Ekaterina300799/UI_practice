@@ -12,7 +12,7 @@ class LoginCard extends StatefulWidget {
 
 class _LoginCardState extends State<LoginCard> {
   bool _isBtnEnabled = false;
-  final _myController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   void _callback() {
     Navigator.push(
@@ -24,24 +24,14 @@ class _LoginCardState extends State<LoginCard> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    _myController.addListener(() {
-      setState(() {
-        _isBtnEnabled = _myController.value.text.isNotEmpty;
-      });
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     var mq = MediaQuery.of(context).size.width;
     return Container(
       child: Positioned(
-        bottom: 100,
+        bottom: MediaQuery.of(context).viewInsets.bottom,
         left: 30,
         right: 30,
-        top: 100,
+        top: 30,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,53 +52,61 @@ class _LoginCardState extends State<LoginCard> {
               shape: new RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(20),
               ),
-              child: Column(
-                children: [
-                  Field(
-                    label: "E-mail",
-                    obscure: false,
-                  ),
-                  Field(
-                    label: "Password",
-                    obscure: true,
-                    controller: _myController,
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    decoration: BoxDecoration(boxShadow: <BoxShadow>[
-                      BoxShadow(
-                          blurRadius: 17.0,
-                          color: Colors.black12,
-                          offset: Offset(0.0, 0.1))
-                    ]),
-                    width: mq * 0.7,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: TextButton(
-                        onPressed: _isBtnEnabled ? _callback : null,
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                              _isBtnEnabled
-                                  ? Colors.purple[300]
-                                  : Colors.purple[200]),
-                          padding: MaterialStateProperty.all(
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: Form(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                key: formKey,
+                onChanged: () => setState(
+                    () => _isBtnEnabled = formKey.currentState.validate()),
+                child: Column(
+                  children: [
+                    Field(
+                      label: "E-mail",
+                      obscure: false,
+                      isEmail: true,
+                    ),
+                    Field(
+                      label: "Password",
+                      obscure: true,
+                      isEmail: false,
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(boxShadow: <BoxShadow>[
+                        BoxShadow(
+                            blurRadius: 17.0,
+                            color: Colors.black12,
+                            offset: Offset(0.0, 0.1))
+                      ]),
+                      width: mq * 0.7,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: TextButton(
+                          onPressed: _isBtnEnabled ? _callback : null,
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                _isBtnEnabled
+                                    ? Colors.purple[300]
+                                    : Colors.purple[200]),
+                            padding: MaterialStateProperty.all(
+                              EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 20),
+                            ),
                           ),
-                        ),
-                        child: Text(
-                          "Log in",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
+                          child: Text(
+                            "Log in",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],
