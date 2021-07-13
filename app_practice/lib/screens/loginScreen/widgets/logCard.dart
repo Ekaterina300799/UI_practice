@@ -2,6 +2,7 @@ import 'package:app_practice/screens/contactsScreen/contactScreen.dart';
 import 'package:app_practice/screens/loginScreen/widgets/textField.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginCard extends StatefulWidget {
   const LoginCard({Key key}) : super(key: key);
@@ -13,14 +14,48 @@ class LoginCard extends StatefulWidget {
 class _LoginCardState extends State<LoginCard> {
   bool _isBtnEnabled = false;
   final formKey = GlobalKey<FormState>();
+  final _myEmailController = TextEditingController();
 
-  void _callback() {
+  SharedPreferences sharedPreferences;
+  bool newLogin;
+
+  @override
+  void initState() {
+    super.initState();
+    loginExists();
+  }
+
+  void loginExists() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    newLogin = (sharedPreferences.getBool("login") ?? true);
+
+    print(newLogin);
+    if (newLogin == false) {
+      Navigator.push(
+        context,
+        CupertinoPageRoute(
+          builder: (ctx) => ContactsList(),
+        ),
+      );
+    }
+  }
+
+  void _callback() async {
+    sharedPreferences.setBool("login", false);
+    sharedPreferences.setString("email", _myEmailController.text);
+
     Navigator.push(
       context,
       CupertinoPageRoute(
         builder: (ctx) => ContactsList(),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _myEmailController.dispose();
+    super.dispose();
   }
 
   @override
@@ -61,6 +96,7 @@ class _LoginCardState extends State<LoginCard> {
                   children: [
                     Field(
                       label: "E-mail",
+                      controller: _myEmailController,
                       obscure: false,
                       isEmail: true,
                     ),

@@ -5,7 +5,8 @@ class Field extends StatelessWidget {
   String label;
   bool obscure;
   bool isEmail;
-  Field({this.label, this.obscure, this.isEmail});
+  TextEditingController controller;
+  Field({this.label, this.obscure, this.isEmail, this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,7 @@ class Field extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       width: mq * 0.9,
       child: TextFormField(
+        controller: controller,
         textAlign: TextAlign.center,
         obscureText: obscure,
         decoration: InputDecoration(
@@ -31,7 +33,8 @@ class Field extends StatelessWidget {
         validator: MultiValidator([
           isEmail
               ? EmailValidator(errorText: "Invalid Email")
-              : MinLengthValidator(8, errorText: "should be at least 8")
+              : MinLengthValidator(8,
+                  errorText: "should be at least 8") // todo: нет спец знаков
         ]),
       ),
     );

@@ -2,7 +2,9 @@ import 'package:app_practice/data/api.dart';
 import 'package:app_practice/data/dataModel.dart';
 import 'package:app_practice/screens/contactsScreen/widgets/contactCard.dart';
 import 'package:app_practice/screens/contactsScreen/widgets/error.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ContactsList extends StatefulWidget {
   ContactsList({Key key}) : super(key: key);
@@ -14,6 +16,7 @@ class ContactsList extends StatefulWidget {
 class _ContactsListState extends State<ContactsList> {
   List<User> _user;
   bool _loading;
+  SharedPreferences sharedPreferences;
 
   @override
   void initState() {
@@ -54,6 +57,20 @@ class _ContactsListState extends State<ContactsList> {
                       color: Colors.black,
                     ),
                   ),
+                ),
+                leading: IconButton(
+                  icon: Icon(Icons.logout),
+                  color: Colors.black,
+                  onPressed: () async {
+                    sharedPreferences = await SharedPreferences.getInstance();
+                    sharedPreferences.setBool("login", true);
+                    Navigator.pop(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (ctx) => ContactsList(),
+                      ),
+                    );
+                  },
                 ),
                 backgroundColor: Colors.white,
               ),
